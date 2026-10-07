@@ -5,7 +5,7 @@ document.addEventListener("components:loaded", () => {
   initNavLinks();
 });
 
-
+// Navegación: sincroniza el enlace activo del header y de la barra inferior
 function initNavLinks() {
   const links = document.querySelectorAll(".nav-link");
   const subtitle = document.getElementById("current-section");
@@ -15,7 +15,6 @@ function initNavLinks() {
       const section = link.dataset.section;
       links.forEach((l) => l.classList.toggle("active", l.dataset.section === section));
       subtitle.textContent = section;
-      setMenu(false);
     });
   });
 }

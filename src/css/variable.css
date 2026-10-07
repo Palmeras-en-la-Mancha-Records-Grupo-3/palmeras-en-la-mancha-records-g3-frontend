@@ -1,0 +1,28 @@
+/* ================= VARIABLES (tema Sol & Vinilo) ================= */
+:root {
+  --primary: #a33b19;
+  --primary-container: #c4532f;
+  --on-primary: #ffffff;
+  --secondary: #7a5900;
+  --secondary-container: #fec64c;
+  --on-secondary-container: #725300;
+  --tertiary: #2c694d;
+  --tertiary-fixed: #b1f0cd;
+
+  --surface: #fff8f3;
+  --surface-lowest: #ffffff;
+  --surface-low: #f9f2ed;
+  --surface-container: #f3ede7;
+  --surface-high: #ede7e2;
+  --on-surface: #1d1b18;
+  --on-surface-variant: #57423c;
+  --outline: #8b716a;
+
+  --font-display: "Epilogue", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --radius: 12px;
+  --header-h: 64px;
+  --bottom-nav-h: 64px;
+  --max-width: 1440px;
+}

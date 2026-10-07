@@ -2,71 +2,112 @@
 
 const BASE = "src";
 
+const EXTERNAL_SCRIPTS = ["https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"];
 
-const CORE_STYLES = ["variable.css", "reset.css", "style.css"];
+const CORE_STYLES = ["variable.css", "reset.css", "style.css"]; 
 
 
 const LAST_STYLES = ["responsive.css"];
 
 
-const CORE_SCRIPTS = ["main.js"];
+const CORE_SCRIPTS = ["api.js", "main.js"];
 
-// Añade un <link> con el CSS al <head>
+const loadedFiles = new Set();
+
 function loadStyle(file) {
+  const href = `${BASE}/css/${file}`;
+  if (loadedFiles.has(href)) return;
+  loadedFiles.add(href);
+ 
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = `${BASE}/css/${file}`;
+  link.href = href;
   document.head.appendChild(link);
 }
 
-// Añade un <script> y espera a que termine de cargar
+
 function loadScript(file) {
+  const src = file.startsWith("http") ? file : `${BASE}/js/${file}`;
+  if (loadedFiles.has(src)) return Promise.resolve();
+  loadedFiles.add(src);
+ 
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `${BASE}/js/${file}`;
+    script.src = src;
     script.onload = resolve;
-    script.onerror = () => reject(new Error(`No se pudo cargar ${script.src}`));
+    script.onerror = () => reject(new Error(`No se pudo cargar ${src}`));
     document.body.appendChild(script);
   });
 }
 
-// Descarga el HTML de un componente y lo pone en su sitio
-async function loadHTML(el, name) {
-  const url = `${BASE}/components/${name}.html`;
+
+async function fetchHTML(url) {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
-  el.outerHTML = await response.text();
+  return response.text();
 }
 
-// Carga un componente completo: su CSS, su HTML y su JS
+
 async function loadComponent(el) {
   const name = el.dataset.component;
   try {
     loadStyle(`${name}.css`);
-    await loadHTML(el, name);
+    el.outerHTML = await fetchHTML(`${BASE}/components/${name}.html`);
     await loadScript(`${name}.js`);
   } catch (error) {
     console.error(error);
   }
 }
 
-async function initApp() {
-  //Estilos generales
-  CORE_STYLES.forEach(loadStyle);
+async function loadComponent(el) {
+  const name = el.dataset.component;
+  try {
+    loadStyle(`${name}.css`);
+    el.outerHTML = await fetchHTML(`${BASE}/components/${name}.html`);
+    await loadScript(`${name}.js`);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  //Componentes (todos los elementos con data-component)
+async function loadView(route) {
+  const app = document.getElementById("app");
+ 
+  loadStyle(`${route.view}.css`);
+  app.innerHTML = await fetchHTML(`${BASE}/views/${route.view}.html`);
+ 
+  for (const file of route.scripts || []) {
+    await loadScript(file);
+  }
+ 
+  // Cada vista tiene una función que la arranca (ej. initArtistsView)
+  if (route.init && typeof window[route.init] === "function") {
+    window[route.init]();
+  }
+}
+
+async function initApp() {
+  
+  for (const url of EXTERNAL_SCRIPTS) {
+    await loadScript(url).catch((error) => console.error(error));
+  }
+ 
+
+  CORE_STYLES.forEach(loadStyle);
+ 
+ 
   const components = document.querySelectorAll("[data-component]");
   await Promise.all([...components].map(loadComponent));
+ 
 
-  //Estilos finales
   LAST_STYLES.forEach(loadStyle);
+ 
 
-  //Scripts generales
   for (const file of CORE_SCRIPTS) {
     await loadScript(file);
   }
-
-  // 5. Avisa de que todo está listo
+ 
+  
   document.dispatchEvent(new Event("components:loaded"));
 }
 

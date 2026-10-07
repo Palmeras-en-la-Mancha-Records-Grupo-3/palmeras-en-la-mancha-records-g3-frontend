@@ -1,6 +1,4 @@
-
-
-const BASE = "../src";
+const BASE = "src";
 
 
 const CORE_STYLES = ["variable.css", "reset.css", "style.css"];

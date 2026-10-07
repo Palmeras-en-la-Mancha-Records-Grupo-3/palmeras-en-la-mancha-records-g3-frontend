@@ -1,0 +1,36 @@
+<section class="view artists-view" aria-labelledby="artists-title">
+  <div class="view-head">
+    <p class="view-eyebrow">
+      <span class="material-symbols-outlined" aria-hidden="true">mic</span>
+      Gestión de artistas
+    </p>
+    <h1 class="view-title" id="artists-title">Nuevo artista</h1>
+    <p class="view-subtitle">Añade un músico o banda al catálogo</p>
+  </div>
+
+  <form class="form-card" id="artist-form" novalidate>
+    <div class="field">
+      <label for="artist-name">Nombre *</label>
+      <input id="artist-name" name="name" type="text" maxlength="100" placeholder="Ej: Vetusta Morla" aria-describedby="artist-name-error">
+      <p class="field-error" id="artist-name-error"></p>
+    </div>
+
+    <div class="field">
+      <label for="artist-description">Descripción *</label>
+      <textarea id="artist-description" name="description" rows="4" maxlength="500" placeholder="Estilo, origen, trayectoria..." aria-describedby="artist-description-error"></textarea>
+      <p class="field-hint"><span id="artist-description-count">0</span> / 500</p>
+      <p class="field-error" id="artist-description-error"></p>
+    </div>
+
+    <!-- Mensaje de éxito o de error del servidor -->
+    <p class="form-message" id="artist-form-message" role="status" hidden></p>
+    <!--Boton guardar artista-->
+    <div class="form-actions">
+      <button class="btn btn-secondary" type="reset">Limpiar</button>
+      <button class="btn btn-primary" type="submit" id="artist-save-btn">
+        <span class="material-symbols-outlined" aria-hidden="true">save</span>
+        <span>Guardar artista</span>
+      </button>
+    </div>
+  </form>
+</section>

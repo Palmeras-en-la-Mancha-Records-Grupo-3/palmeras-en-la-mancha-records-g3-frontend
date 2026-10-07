@@ -1,0 +1,25 @@
+<dialog class="modal" id="app-modal" aria-labelledby="modal-title" aria-describedby="modal-message">
+  <div class="modal-card">
+    <div class="modal-header">
+      <span class="modal-icon" aria-hidden="true">
+        <span class="material-symbols-outlined" id="modal-icon">warning</span>
+      </span>
+      <div>
+        <h2 class="modal-title" id="modal-title">¿Estás seguro?</h2>
+        <p class="modal-subtitle" id="modal-subtitle"></p>
+      </div>
+    </div>
+
+    <p class="modal-message" id="modal-message"></p>
+
+    <div class="modal-actions">
+      <button type="button" class="modal-btn modal-btn-cancel" data-action="cancel">
+        <span id="modal-cancel-text">Cancelar</span>
+      </button>
+      <button type="button" class="modal-btn modal-btn-confirm" data-action="confirm">
+        <span class="material-symbols-outlined" id="modal-confirm-icon" aria-hidden="true">delete</span>
+        <span id="modal-confirm-text">Eliminar</span>
+      </button>
+    </div>
+  </div>
+</dialog>

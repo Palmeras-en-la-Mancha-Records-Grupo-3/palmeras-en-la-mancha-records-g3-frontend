@@ -1,1 +1,0 @@
-# palmeras-en-la-mancha-records-g3-frontend

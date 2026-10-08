@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palmeras Records - Formatos</title>
+
+    <!-- Librería Axios para la conexión de base de datos (CORREGIDO CON LA URL COMPLETA) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    
+    <!-- JavaScript compartido (Carga en segundo plano) -->
+    <script src="src/js/main.js" defer></script>
+
+    <!-- 1º El reset (para limpiar estilos por defecto) -->
+    <link rel="stylesheet" href="src/css/reset.css">
+    
+    <!-- 2º Las variables de colores compartidas -->
+    <link rel="stylesheet" href="src/css/variable.css">
+    
+    <!-- 3º Los estilos globales -->
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    
+    <!-- 4º Mi diseño específico del módulo de Formatos -->
+    <link rel="stylesheet" href="src/css/format.css">
+    
+    <!-- 5º El responsive global -->
+    <link rel="stylesheet" href="src/css/responsive.css">
+
+    <!-- Iconos globales -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="dashboard-container">
+        
+        <!-- ENCABEZADO PRINCIPAL -->
+        <header class="main-header">
+            <hgroup>
+                <h1>Formatos de Audio y Soportes Físicos</h1>
+                <p>Catálogo de formatos activos comerciales y de archivo de la distribuidora discográfica</p>
+            </hgroup>
+            
+        </header>
+
+        <!-- BLOQUE DE MÉTRICAS SUPERIORES (KPIs) -->
+        
+            </ul>
+        </section>
+
+        <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+        <form class="filter-bar" role="search" id="form-filtros">
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                <input type="search" placeholder="Buscar formato, tipo o descripción..." aria-label="Buscar formatos">
+            </div>
+            <nav class="filter-tabs" aria-label="Filtros de estado">
+            </nav>
+
+            <button type="button" class="btn-primary" id="btn-nuevo-formato">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Añadir Formato
+            </button>
+        </form>
+
+        <!-- LISTADO PRINCIPAL DE FORMATOS -->
+        <section class="catalog-section" aria-label="Listado de formatos">
+            <!-- Encabezados de columnas de forma semántica -->
+            <header class="catalog-table-header">
+    <span>ID Formato</span>
+    <span>Formato</span>
+    <span>Precio Medio</span>
+    <span>ID Álbum</span>
+    <span>Nombre de Álbum</span>
+    <span>Stock</span>
+</header>
+
+
+            </header>
+
+            <ul class="catalog-list" id="lista-formatos"></ul>
+
+        </section>
+    </main>
+
+</body>
+</html>

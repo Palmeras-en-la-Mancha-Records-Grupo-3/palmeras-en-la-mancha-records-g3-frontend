@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Inventario - Nuevo Álbum</title>
+    <link rel="stylesheet" href="src/css/album_add.css" />
+  </head>
+  <body>
+    <!-- Contenedor Principal / Ventana -->
+    <div class="form-container">
+      <!-- Bloque 1: Barra Superior de Acciones -->
+      <section class="form-top-bar">
+        <h2>Nuevo Álbum <span class="subtitle">EN CATÁLOGO</span></h2>
+        <div class="header-actions">
+          <button class="btn-cancel" type="button">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+            Cancelar
+          </button>
+          <button class="btn-save-top" type="button">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+              />
+              <polyline points="17 21 17 13 7 13 7 21" />
+              <polyline points="7 3 7 8 15 8" />
+            </svg>
+            Guardar
+          </button>
+        </div>
+      </section>
+
+      <!-- Bloque 2: Mensaje de Alerta / Validación -->
+      <section class="alert-box">
+        <div class="alert-content">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+            />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <p>
+            <strong>Verificación requerida:</strong> Por favor, introduce el
+            código de barras EAN/UPC para el formato vinilo antes de publicar.
+          </p>
+        </div>
+        <button class="btn-close-alert" type="button">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </section>
+
+      <!-- Rejilla Distribuidora Principal (Layout) -->
+      <div class="form-layout-grid">
+        <!-- Bloque 3: COLUMNA IZQUIERDA -->
+        <section class="column-left">
+          <div class="card-box">
+            <div class="card-box-header">
+              <div class="card-title-inline">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <h3>Arte de Portada</h3>
+              </div>
+              <span class="badge badge-success">ALTA DEFINICIÓN</span>
+            </div>
+
+            <div class="cover-display">
+              <img
+                src="data:image/jpeg;base64,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"
+                alt="Portada"
+                id="image-preview"
+              />
+              <div class="cover-specifications">CMYK 3000×3000px · 2.4 MB</div>
+            </div>
+
+            <div class="cover-management-buttons">
+              <button type="button" class="btn-action-outline">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"
+                  /></svg
+                >Sustituir
+              </button>
+              <button type="button" class="btn-action-outline">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15" />
+                  <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15" /></svg
+                >Recortar
+              </button>
+              <button
+                type="button"
+                class="btn-action-outline btn-delete-action"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
+                  /></svg
+                >Eliminar
+              </button>
+            </div>
+
+            <div class="upload-dropzone" id="drop-zone">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"
+                />
+              </svg>
+              <p id="drop-zone__prompt">
+                Arrastra una imagen alternativa o pulsa para subir
+              </p>
+              <span>JPG, PNG o WebP (máx. 10 MB)</span>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <div class="card-title-inline margin-bottom-sm">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="10" width="20" height="12" rx="2" ry="2" />
+                <path d="M6 10V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v6" />
+              </svg>
+              <h3>Discográfica / Sello Editor</h3>
+            </div>
+            <div class="form-input-element">
+              <select id="label-id"></select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bloque 4: COLUMNA DERECHA -->
+        <section class="column-right">
+          <div class="card-box">
+            <div class="card-box-header">
+              <div class="card-title-inline">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                <h3>Metadatos Principales</h3>
+              </div>
+              <span class="badge-status-verified">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                FICHA TÉCNICA VERIFICADA
+              </span>
+            </div>
+
+            <div class="inputs-grid-layout">
+              <div class="input-form-group">
+                <label for="title">Título del Álbum *</label>
+                <div class="input-status-container">
+                  <input type="text" id="title" />
+                  <svg
+                    class="icon-input-success"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--tertiary)"
+                    stroke-width="3"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+              </div>
+              <div class="input-form-group">
+                <label>Artista o Agrupación *</label>
+                <div class="input-status-container">
+                  <select class="select-with-icon" id="artist"></select>
+                </div>
+              </div>
+
+              <div class="input-form-group">
+                <label>Año Original de Grabación *</label>
+                <input type="number" id="release_year" />
+              </div>
+              <div class="input-form-group">
+                <label>Género Principal *</label>
+                <select id="genre"></select>
+              </div>
+            </div>
+          </div>
+
+          <!-- AQUÍ ENTRARÁ EL BLOQUE 5 FINAL -->
+          <!-- Tarjeta: Soportes Físicos y Tarifas -->
+          <div class="card-box">
+            <div class="card-box-header">
+              <div class="card-title-inline">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+                <h3>Soportes Físicos & Tarifas</h3>
+              </div>
+              <button type="button" class="btn-add-support-item">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Añadir soporte
+              </button>
+            </div>
+
+            <!-- Fila Edición: Vinilo LP -->
+            <div class="support-edition-row">
+              <div class="edition-top-details">
+                <!-- El título ahora es un selector interactivo de formato de venta -->
+                <div class="input-form-group format-selector-group">
+                  <label>Tipo de Formato Físico *</label>
+                  <select class="format-dropdown" id="format"></select>
+                </div>
+                <div class="edition-status-group">
+                  <span class="status-indicator-active">● Stock activo</span>
+                  <button
+                    type="button"
+                    class="btn-remove-edition-row"
+                    aria-label="Eliminar soporte"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Rejilla de Inputs de Tarifas (Se mantiene igual) -->
+              <div class="inputs-grid-three-columns">
+                <div class="input-form-group">
+                  <label>Precio PVP (€)</label>
+                  <input type="number" step="0.01" id="price" />
+                </div>
+                <div class="input-form-group">
+                  <label>Stock Inicial</label>
+                  <input type="number" id="stock" />
+                </div>
+                <div class="input-form-group">
+                  <label>Código EAN/UPC</label>
+                  <input type="text" value="8436542010992" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botonera de Cierre y Publicación (Sustituye al footer antiguo) -->
+          <section class="form-bottom-actions-bar">
+            <button type="button" class="btn-action-secondary-large">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              Guardar como Borrador
+            </button>
+            <button
+              type="button"
+              class="btn-action-primary-large"
+              id="button-save"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Guardar y Publicar Álbum
+            </button>
+          </section>
+        </section>
+      </div>
+      <!-- Cierre ordenado de form-layout-grid -->
+    </div>
+    <!-- Cierre ordenado de form-container -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="src/js/album_add.js"></script>
+    <script src="src/js/list_update.js"></script>
+  </body>
+</html>
